@@ -66,7 +66,7 @@ var nsupload = require('nsupload')
 var config;
 
 //Catch files
-module.exports = function sendFile (filePath, cb) {
+module.exports = function sendFile (fileInfo, cb) {
   if(!config) {
     throw new Error('nsupload module not configured. Please use nsupload.config to set configuration.');
   } else if(!(config.email && config.password && config.account && config.script)) {
@@ -78,8 +78,9 @@ module.exports = function sendFile (filePath, cb) {
   url = _.template(URL_TEMPLATE)(config);
   var authHeader = _.template(AUTH_STRING)(config);
   var deferred = q.defer();
-  var folderId = || null;
+  var folderId = fileInfo.folder || null;
   var e;
+  var filePath = fileInfo.path;
   if(!filePath) {
     setImmediate(function() {
       e = new Error('No filename passed');
