@@ -9,9 +9,6 @@ var url;
 
 var AUTH_STRING = 'NLAuth  nlauth_account=<%= account %>, nlauth_email=<%= email %>, nlauth_signature=<%= password %>';
 
-var nsupload = require('nsupload')
-  , through = require('through');
-
 /**
  * @module
  * @function
